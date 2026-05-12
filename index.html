@@ -984,6 +984,79 @@
     }
     .mp-close:hover { color: var(--white); }
 
+    /* ─── RELEASE ─── */
+    #release {
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+    }
+    .release-bg {
+      position: absolute;
+      inset: -5%;
+      background-image: url('PORTADA EP.jpeg');
+      background-size: cover;
+      background-position: center;
+      filter: blur(28px);
+    }
+    .release-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8,8,8,0.68);
+    }
+    .release-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      text-align: center;
+      padding: 120px 56px;
+    }
+    .release-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+    .release-artists {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 14px;
+    }
+    .release-title {
+      font-family: 'Bodoni Moda', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+    .release-sello {
+      font-size: 0.58rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(139,167,190,0.6);
+      margin-bottom: 52px;
+    }
+    .release-countdown {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+    }
+    .release-countdown .countdown-num {
+      font-size: 2.6rem;
+    }
+    @media (max-width: 760px) {
+      .release-content { padding: 80px 28px; }
+      .release-countdown { gap: 20px; }
+      .release-countdown .countdown-num { font-size: 2rem; }
+    }
+
     /* ─── KEYFRAMES ─── */
     @keyframes up {
       to { opacity: 1; transform: translateY(0); }
@@ -1078,6 +1151,7 @@
   <ul class="nav-links" id="navlinks">
     <li><a href="#bio" onclick="cm()">Sobre mí</a></li>
     <li><a href="#supports" onclick="cm()">Supports</a></li>
+    <li><a href="#release" onclick="cm()">Lanzamiento</a></li>
     <li><a href="#music" onclick="cm()">Música</a></li>
     <li><a href="#video" onclick="cm()">Video</a></li>
     <li><a href="#gallery" onclick="cm()">Fotos</a></li>
@@ -1187,6 +1261,26 @@
         <span class="artist-role">DJ &amp; Producer</span>
       </li>
     </ul>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══ RELEASE ═══ -->
+<section id="release">
+  <div class="release-bg"></div>
+  <div class="release-overlay"></div>
+  <div class="release-content">
+    <p class="release-eyebrow r">Próximo lanzamiento</p>
+    <p class="release-artists r" style="transition-delay:.08s">Federico Morgan &amp; Gandini</p>
+    <h2 class="release-title r" style="transition-delay:.14s">Indulge Yourself</h2>
+    <p class="release-sello r" style="transition-delay:.2s">Industria Argentina</p>
+    <div class="release-countdown r" style="transition-delay:.28s">
+      <div class="countdown-item"><span class="countdown-num" id="ep-cd-days">--</span><span class="cd-label">días</span></div>
+      <div class="countdown-item"><span class="countdown-num" id="ep-cd-hours">--</span><span class="cd-label">horas</span></div>
+      <div class="countdown-item"><span class="countdown-num" id="ep-cd-mins">--</span><span class="cd-label">min</span></div>
+      <div class="countdown-item"><span class="countdown-num" id="ep-cd-secs">--</span><span class="cd-label">seg</span></div>
+    </div>
   </div>
 </section>
 
@@ -1333,7 +1427,16 @@
     <a href="mailto:federicomorgan3@gmail.com" class="contact-mail r" style="transition-delay:.2s">
       federicomorgan3@gmail.com
     </a>
-    <div class="r" style="transition-delay:.28s">
+    <div class="r" style="transition-delay:.26s; margin-top: 20px;">
+      <a href="https://wa.me/5492364555646" target="_blank" rel="noopener" class="presskit-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.103 1.504 5.832L.057 23.5l5.82-1.527A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.809 9.809 0 01-5.012-1.37l-.36-.214-3.733.979.996-3.638-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+    <div class="r" style="transition-delay:.34s">
       <a href="PRESSKIT - Federico Morgan.pdf" download class="presskit-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 3v13M5 16l7 7 7-7"/><line x1="3" y1="22" x2="21" y2="22"/>
@@ -1470,6 +1573,31 @@
       h: document.getElementById('cd-hours'),
       m: document.getElementById('cd-mins'),
       s: document.getElementById('cd-secs')
+    };
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        Object.values(els).forEach(el => { if (el) el.textContent = '00'; });
+        return;
+      }
+      if (els.d) els.d.textContent = pad(Math.floor(diff / 86400000));
+      if (els.h) els.h.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      if (els.m) els.m.textContent = pad(Math.floor((diff % 3600000) / 60000));
+      if (els.s) els.s.textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  /* ── EP Release Countdown ── */
+  (function () {
+    const target = new Date('2026-06-15T00:00:00-03:00');
+    const els = {
+      d: document.getElementById('ep-cd-days'),
+      h: document.getElementById('ep-cd-hours'),
+      m: document.getElementById('ep-cd-mins'),
+      s: document.getElementById('ep-cd-secs')
     };
     function pad(n) { return String(n).padStart(2, '0'); }
     function tick() {

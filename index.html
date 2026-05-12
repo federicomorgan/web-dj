@@ -998,7 +998,7 @@
       background: linear-gradient(90deg, rgba(8,8,8,0) 0%, rgba(139,167,190,0.06) 50%, rgba(8,8,8,0) 100%);
       border-top: 1px solid rgba(139,167,190,0.1);
       border-bottom: 1px solid rgba(139,167,190,0.1);
-      transition: top 0.4s;
+      transition: top 0.4s, opacity 0.5s;
     }
     nav.scrolled ~ #ticker { top: 57px; }
     .ticker-track {
@@ -1612,6 +1612,15 @@
     nav.classList.toggle('scrolled', scrolled);
     if (ticker) ticker.style.top = scrolled ? '57px' : '80px';
   }, { passive: true });
+
+  /* Ticker — solo visible en el hero */
+  if (ticker) {
+    const heroSection = document.getElementById('hero');
+    new IntersectionObserver(entries => {
+      ticker.style.opacity = entries[0].isIntersecting ? '1' : '0';
+      ticker.style.pointerEvents = entries[0].isIntersecting ? '' : 'none';
+    }, { threshold: 0.05 }).observe(heroSection);
+  }
 
   /* Mobile menu */
   const nl = document.getElementById('navlinks');

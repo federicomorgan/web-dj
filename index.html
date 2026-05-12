@@ -984,6 +984,53 @@
     }
     .mp-close:hover { color: var(--white); }
 
+    /* ─── HERO TICKER ─── */
+    .hero-ticker {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      z-index: 2;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background: rgba(8,8,8,0.55);
+      border-bottom: 1px solid var(--line);
+    }
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 24s linear infinite;
+      will-change: transform;
+    }
+    .ticker-item {
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(139,167,190,0.65);
+      padding: 0 40px;
+      flex-shrink: 0;
+    }
+    .ticker-sep {
+      color: rgba(139,167,190,0.28);
+      flex-shrink: 0;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── HERO FLAG ─── */
+    .hero-flag {
+      height: 15px;
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 2px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    }
+
     /* ─── RELEASE ─── */
     #release {
       padding: 0;
@@ -1165,13 +1212,25 @@
 
 <!-- ═══ HERO ═══ -->
 <section id="hero">
+
+  <div class="hero-ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">Indulge Yourself — 15 Junio</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Industria Argentina</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Federico Morgan &amp; Gandini</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Indulge Yourself — 15 Junio</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Industria Argentina</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Federico Morgan &amp; Gandini</span><span class="ticker-sep">·</span>
+    </div>
+  </div>
+
   <div class="hero-photo">
     <img id="hero-img" src="foto-hero.jpg" alt="">
   </div>
   <div class="hero-photo-overlay"></div>
 
   <div class="hero-content">
-    <p class="hero-tag">🇦🇷 Argentina</p>
+    <p class="hero-tag"><img src="bandera-argentina.png" alt="Argentina" class="hero-flag"></p>
     <h1 class="hero-name">
       <span class="line"><span>Federico</span></span>
       <span class="line"><span>Morgan</span></span>

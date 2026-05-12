@@ -1037,75 +1037,72 @@
 
     /* ─── RELEASE ─── */
     #release {
-      padding: 0;
-      position: relative;
-      overflow: hidden;
-      min-height: 520px;
-      display: flex;
+      padding: 100px 0;
+      background: var(--black);
+    }
+    .release-grid {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 80px;
       align-items: center;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 56px;
     }
-    .release-bg {
-      position: absolute;
-      inset: -5%;
-      background-image: url('PORTADA EP.jpeg');
-      background-size: cover;
-      background-position: center;
-      filter: blur(28px);
-    }
-    .release-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(8,8,8,0.68);
-    }
-    .release-content {
-      position: relative;
-      z-index: 1;
+    .release-cover {
       width: 100%;
-      text-align: center;
-      padding: 120px 56px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+    }
+    .release-right {}
+    .release-sello-img {
+      height: 48px;
+      width: auto;
+      display: block;
+      margin-bottom: 32px;
+      opacity: 0.85;
+      border-radius: 4px;
     }
     .release-eyebrow {
       font-size: 0.6rem;
       letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--blue);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      display: block;
     }
     .release-artists {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--dim);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .release-title {
       font-family: 'Bodoni Moda', serif;
       font-weight: 300;
-      font-style: italic;
-      font-size: clamp(2.8rem, 6vw, 5.5rem);
-      line-height: 1;
+      font-size: clamp(2.4rem, 4vw, 4rem);
+      line-height: 1.05;
       letter-spacing: -0.01em;
-      margin-bottom: 14px;
-    }
-    .release-sello {
-      font-size: 0.58rem;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: rgba(139,167,190,0.6);
-      margin-bottom: 52px;
+      margin-bottom: 48px;
     }
     .release-countdown {
       display: flex;
-      justify-content: center;
-      gap: 36px;
+      gap: 32px;
     }
     .release-countdown .countdown-num {
-      font-size: 2.6rem;
+      font-size: 2.4rem;
+    }
+    @media (max-width: 960px) {
+      .release-grid { grid-template-columns: 1fr; gap: 48px; }
+      .release-cover { max-width: 360px; }
     }
     @media (max-width: 760px) {
-      .release-content { padding: 80px 28px; }
+      .release-grid { padding: 0 28px; }
       .release-countdown { gap: 20px; }
-      .release-countdown .countdown-num { font-size: 2rem; }
+      .release-countdown .countdown-num { font-size: 1.8rem; }
     }
 
     /* ─── KEYFRAMES ─── */
@@ -1333,18 +1330,19 @@
 
 <!-- ═══ RELEASE ═══ -->
 <section id="release">
-  <div class="release-bg"></div>
-  <div class="release-overlay"></div>
-  <div class="release-content">
-    <p class="release-eyebrow r">Próximo lanzamiento</p>
-    <p class="release-artists r" style="transition-delay:.08s">Federico Morgan &amp; Gandini</p>
-    <h2 class="release-title r" style="transition-delay:.14s">Indulge Yourself</h2>
-    <p class="release-sello r" style="transition-delay:.2s">Industria Argentina</p>
-    <div class="release-countdown r" style="transition-delay:.28s">
-      <div class="countdown-item"><span class="countdown-num" id="ep-cd-days">--</span><span class="cd-label">días</span></div>
-      <div class="countdown-item"><span class="countdown-num" id="ep-cd-hours">--</span><span class="cd-label">horas</span></div>
-      <div class="countdown-item"><span class="countdown-num" id="ep-cd-mins">--</span><span class="cd-label">min</span></div>
-      <div class="countdown-item"><span class="countdown-num" id="ep-cd-secs">--</span><span class="cd-label">seg</span></div>
+  <div class="release-grid">
+    <img src="PORTADA EP.jpeg" alt="Indulge Yourself EP" class="release-cover rl">
+    <div class="release-right">
+      <img src="selloindustriaargentina.jpg" alt="Industria Argentina" class="release-sello-img r">
+      <span class="release-eyebrow r" style="transition-delay:.06s">Próximo lanzamiento</span>
+      <p class="release-artists r" style="transition-delay:.12s">Federico Morgan &amp; Gandini</p>
+      <h2 class="release-title r" style="transition-delay:.18s">Indulge Yourself</h2>
+      <div class="release-countdown r" style="transition-delay:.26s">
+        <div class="countdown-item"><span class="countdown-num" id="ep-cd-days">--</span><span class="cd-label">días</span></div>
+        <div class="countdown-item"><span class="countdown-num" id="ep-cd-hours">--</span><span class="cd-label">horas</span></div>
+        <div class="countdown-item"><span class="countdown-num" id="ep-cd-mins">--</span><span class="cd-label">min</span></div>
+        <div class="countdown-item"><span class="countdown-num" id="ep-cd-secs">--</span><span class="cd-label">seg</span></div>
+      </div>
     </div>
   </div>
 </section>

@@ -1467,12 +1467,6 @@
           src="lineup9demayo.jpg"
           alt="Astral Sessions — 9 de Mayo"
           class="show-lineup-img">
-        <div class="show-countdown">
-          <div class="countdown-item"><span class="countdown-num" id="cd-days">--</span><span class="cd-label">días</span></div>
-          <div class="countdown-item"><span class="countdown-num" id="cd-hours">--</span><span class="cd-label">horas</span></div>
-          <div class="countdown-item"><span class="countdown-num" id="cd-mins">--</span><span class="cd-label">min</span></div>
-          <div class="countdown-item"><span class="countdown-num" id="cd-secs">--</span><span class="cd-label">seg</span></div>
-        </div>
       </div>
 
       <div>
@@ -1663,31 +1657,6 @@
       heroImg.style.transform = 'translateY(' + (window.scrollY * 0.28) + 'px)';
     }, { passive: true });
   }
-
-  /* ── Countdown ── */
-  (function () {
-    const target = new Date('2026-05-09T22:00:00-03:00');
-    const els = {
-      d: document.getElementById('cd-days'),
-      h: document.getElementById('cd-hours'),
-      m: document.getElementById('cd-mins'),
-      s: document.getElementById('cd-secs')
-    };
-    function pad(n) { return String(n).padStart(2, '0'); }
-    function tick() {
-      const diff = target - Date.now();
-      if (diff <= 0) {
-        Object.values(els).forEach(el => { if (el) el.textContent = '00'; });
-        return;
-      }
-      if (els.d) els.d.textContent = pad(Math.floor(diff / 86400000));
-      if (els.h) els.h.textContent = pad(Math.floor((diff % 86400000) / 3600000));
-      if (els.m) els.m.textContent = pad(Math.floor((diff % 3600000) / 60000));
-      if (els.s) els.s.textContent = pad(Math.floor((diff % 60000) / 1000));
-    }
-    tick();
-    setInterval(tick, 1000);
-  })();
 
   /* ── EP Release Countdown ── */
   (function () {

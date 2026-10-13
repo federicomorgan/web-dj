@@ -901,6 +901,29 @@
       .videos-list-header { flex-direction: column; gap: 16px; }
     }
 
+    /* ─── MUSIC (SoundCloud) ─── */
+    #music {
+      padding: 60px 0 80px;
+    }
+    .sc-embed-wrap {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      background: #0a0a0a;
+      border-top: 1px solid var(--line);
+    }
+    .sc-embed-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    @media (max-width: 560px) {
+      .sc-embed-wrap { height: 320px; }
+    }
+
     /* ─── SHOWS LIST ─── */
     #shows-list {
       padding: 80px 0 60px;
@@ -1731,6 +1754,7 @@
   <ul class="nav-links" id="navlinks">
     <li><a href="#shows-list" onclick="cm()">Shows</a></li>
     <li><a href="#videos-list" onclick="cm()">Videos</a></li>
+    <li><a href="#music" onclick="cm()">Música</a></li>
     <li><a href="#releases-list" onclick="cm()">Lanzamientos</a></li>
     <li><a href="#supports" onclick="cm()">Supports</a></li>
     <li><a href="#gallery" onclick="cm()">Fotos</a></li>
@@ -1851,12 +1875,34 @@
 
 <hr class="section-divider">
 
+<!-- ═══ MUSIC ═══ -->
+<section id="music">
+  <div class="section-wrap">
+
+    <div class="videos-list-header">
+      <div class="videos-list-header-left">
+        <span class="shows-list-num">03 · Música</span>
+        <h2 class="videos-list-title">Último <em>set.</em></h2>
+      </div>
+      <a href="https://soundcloud.com/federicomorgan" target="_blank" rel="noopener" class="videos-list-link">Ver SoundCloud →</a>
+    </div>
+
+    <div class="sc-embed-wrap">
+      <iframe id="sc-player" title="Federico Morgan — FZR2026004 (SoundCloud)" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/federicomorgan/fzr2026004&amp;color=%238ba7be&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false&amp;visual=true"></iframe>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
 <!-- ═══ RELEASES LIST ═══ -->
 <section id="releases-list">
   <div class="section-wrap">
 
     <div class="releases-list-header">
-      <span class="shows-list-num">03 · Lanzamientos</span>
+      <span class="shows-list-num">04 · Lanzamientos</span>
       <h2 class="releases-list-title">Últimos <em>lanzamientos.</em></h2>
     </div>
 
@@ -1990,7 +2036,7 @@
   <div class="section-wrap">
 
     <div class="bio-section-header">
-      <span class="shows-list-num">04 · Biografía</span>
+      <span class="shows-list-num">05 · Biografía</span>
       <h2 class="bio-section-title"><em>Biografía</em><span>.</span></h2>
     </div>
 
@@ -2285,7 +2331,11 @@
     const PLAY_ICON  = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
     const PAUSE_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
 
-    let widget = null, dismissed = false, isPlaying = false;
+    let widget = null, dismissed = false, isPlaying = false, hasPlayed = false, musicInView = true;
+
+    function updateMiniPlayer() {
+      miniPlayer.classList.toggle('visible', !dismissed && hasPlayed && !musicInView);
+    }
 
     const scScript = document.createElement('script');
     scScript.src = 'https://w.soundcloud.com/player/api.js';
@@ -2298,7 +2348,7 @@
           if (sound && mpTitle) mpTitle.textContent = sound.title || 'Federico Morgan';
         });
       });
-      widget.bind(SC.Widget.Events.PLAY,   function () { isPlaying = true;  mpPlay.innerHTML = PAUSE_ICON; });
+      widget.bind(SC.Widget.Events.PLAY,   function () { isPlaying = true; hasPlayed = true; mpPlay.innerHTML = PAUSE_ICON; updateMiniPlayer(); });
       widget.bind(SC.Widget.Events.PAUSE,  function () { isPlaying = false; mpPlay.innerHTML = PLAY_ICON; });
       widget.bind(SC.Widget.Events.FINISH, function () { isPlaying = false; mpPlay.innerHTML = PLAY_ICON; });
     };
@@ -2320,7 +2370,8 @@
 
     const musicObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (!dismissed) miniPlayer.classList.toggle('visible', !e.isIntersecting);
+        musicInView = e.isIntersecting;
+        updateMiniPlayer();
       });
     }, { threshold: 0.1 });
     musicObs.observe(musicSection);
